@@ -673,6 +673,13 @@ export function initialize() {
         }
     });
 
+    $("#channels_overlay_container").on("click", ".subscribers-count", function (e) {
+        if ($(e.target).closest(".check, .subscription_settings").length === 0) {
+            open_edit_panel_for_row(this);
+            stream_edit_toggler.toggler.goto("subscribers");
+        }
+    });
+
     $("#channels_overlay_container").on("change", ".stream_message_retention_setting", (e) => {
         const message_retention_setting_dropdown_value = e.target.value;
         settings_components.change_element_block_display_property(
