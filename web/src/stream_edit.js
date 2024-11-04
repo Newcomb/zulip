@@ -668,12 +668,16 @@ export function initialize() {
     });
 
     $("#channels_overlay_container").on("click", ".stream-row", function (e) {
-        if ($(e.target).closest(".check, .subscription_settings").length === 0) {
+        const target = e.target;
+        if (
+            $(target).closest(".check, .subscription_settings").length === 0 &&
+            $(target).closest(".subscriber-count").length === 0
+        ) {
             open_edit_panel_for_row(this);
         }
     });
 
-    $("#channels_overlay_container").on("click", ".subscribers-count", function (e) {
+    $("#channels_overlay_container").on("click", ".subscriber-count", function (e) {
         if ($(e.target).closest(".check, .subscription_settings").length === 0) {
             open_edit_panel_for_row(this);
             stream_edit_toggler.toggler.goto("subscribers");
